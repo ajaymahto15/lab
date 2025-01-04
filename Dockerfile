@@ -4,9 +4,11 @@ ENV TZ=Asia/Kolkata
 EXPOSE 22
 
 RUN apt-get update
-RUN apt install -y tz-data net-tools dnsutils vim git openssh-server sudo ansible sshpass
+RUN apt-get install -y tzdata && \
+    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f non-interactive tzdata
 
-RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && dpkg-reconfigure -f non-interactive tzdata
+RUN apt install -y net-tools dnsutils netcat telnet vim curl git openssh-server sudo ansible sshpass
 
 RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd
 
