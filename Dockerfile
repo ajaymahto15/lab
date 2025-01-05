@@ -14,6 +14,8 @@ RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd
 
 RUN useradd -m -d /home/minion -s /bin/bash minion 
 RUN echo 'minion:minion' | chpasswd
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 RUN usermod -aG sudo minion
 RUN mkdir /home/minion/.ssh
 RUN chmod 700 /home/minion/.ssh

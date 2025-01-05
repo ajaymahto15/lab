@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  bastion:
+    container_name: bastion
+    hostname: bastion
+    image: schooleon/minion
+    ports:
+      - "220:22"
+    networks:
+      - bridge
+
+  minion-1:
+    container_name: minion-1
+    hostname: minion-1
+    image: schooleon/minion
+    ports:
+      - "221:22"
+    networks:
+      - bridge
+
+  minion-2:
+    container_name: minion-2
+    hostname: minion-2
+    image: schooleon/minion
+    ports:
+      - "222:22"
+    networks:
+      - bridge
+
+  minion-3:
+    container_name: minion-3
+    hostname: minion-3
+    image: schooleon/minion
+    ports:
+      - "223:22"
+    networks:
+      - bridge
+
